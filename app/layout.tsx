@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"
-import  VisitorCounter from "../components/VisitorCounter"
+import VisitorCounter from "../components/VisitorCounter"
+import TorchEffect from "../components/highlighter"
+import {VisitorProviderComp} from "../provider/visitorProvider"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,14 +32,14 @@ export const metadata: Metadata = {
     "Web Developer",
     "Frontend Developer",
   ],
-  authors: [{ name: "Pankaj Kushwaha", url: "https://your-portfolio.com" }],
+  authors: [{ name: "Pankaj Kushwaha", url: "https://pankajkushwahadev.vercel.app/" }],
   creator: "Pankaj Kushwaha",
-  themeColor: "#4f46e5", // Indigo 600 for Tailwind
+  themeColor: "#4f46e5",
   openGraph: {
     title: "Pankaj Kushwaha | MERN Stack Developer",
     description:
       "Portfolio of Pankaj Kushwaha, Full Stack MERN Developer, building scalable web applications.",
-    url: "https://your-portfolio.com",
+    url: "https://pankajkushwahadev.vercel.app/",
     siteName: "Pankaj Kushwaha Portfolio",
     images: [
       {
@@ -76,10 +78,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar/>
-        {children}
-        <Footer/>
-        {/* <VisitorCounter /> */}
+        <VisitorProviderComp>
+          <TorchEffect />
+          <Navbar />
+
+          {children}
+          <Footer />
+        </VisitorProviderComp>
+        <VisitorCounter />
+
       </body>
     </html>
   );

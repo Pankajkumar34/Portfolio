@@ -19,12 +19,12 @@ export default function VisitorCounter() {
   const loadVisitor = async () => {
   try {
     const res = await fetch("/api/visit");
-
     if (!res.ok) {
       throw new Error("API Error");
     }
 
     const data = await res.json();
+    // addData(data);
     setStats(data);
   } catch (error) {
     console.error("Visitor API Error:", error);
@@ -74,12 +74,12 @@ export default function VisitorCounter() {
         </div>
       )}
 
-      {stats && (
+      {/* {stats && (
         <div className="text-center text-white mt-10">
           <p>👀 Total Visits: {stats.totalVisits}</p>
           <p>👤 Unique Visitors: {stats.uniqueVisitors}</p>
         </div>
-      )}
+      )} */}
     </>
   );
 }
