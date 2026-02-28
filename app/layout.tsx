@@ -27,7 +27,9 @@ export const metadata: Metadata = {
 
   description:
     "Pankaj Kushwaha is a Full Stack MERN Developer with 2.5+ years of experience building scalable, high-performance web applications using React, Next.js, Node.js and MongoDB.",
-
+ verification: {
+    google: "YXL7WMqWg5Jq2pXsXRXpdeiSFlkxKp42D5pxZaDu998",
+  },
   keywords: [
     "Pankaj Kushwaha",
     "Pankaj Kushwaha MERN Developer",
