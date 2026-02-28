@@ -5,33 +5,33 @@ import Image from "next/image";
 import Link from "next/link";
 const companies = [
     {
-        name: "Baseline IT Development Private Limited",
-        logo: BaselineImg,
-        link: "https://baselineitdevelopment.com",
-        period: "Aug 2025– Feb 2026",
+        name: "QuantumCrafters Studio Private Limited",
+        logo: qcssImg,
+        link: "https://www.qcsstudio.com/",
+        period: "Aug 2025 – Present",
         description: (
             <>
-                Contributed to the development of{" "}
+                Worked at{" "}
                 <a
-                    href="https://hosttravel.org/"
+                    href="https://elevatrx.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-indigo-400 hover:underline"
                 >
-                    HostTravel
+                    ElevatrX
                 </a>{" "}
-                using Next.js, Node.js, Express.js, and MongoDB. Implemented server-side
-                rendering with optimized caching strategies (unstable cache) to enhance
-                performance and scalability. Also developed real-time chat functionality
-                to improve user interaction and engagement.
+                where I built scalable full-stack applications using React.js, Node.js,
+                Express.js, MongoDB, and Redis. Integrated FCM for real-time notifications
+                and deployed optimized solutions on AWS S3 and Cloud CDN for high performance.
             </>
         ),
     },
+
     {
         name: "CQLsys Technologies Private Limited",
         logo: calsysImg,
         link: "https://www.cqlsys.com/",
-        period: "Feb 2024– May 2025",
+        period: "Feb 2024 – May 2025",
         description: (
             <> Served as a Mern Stack Developer for 1.3 years, working on multiple scalable
                 applications built with React.js, Node.js, Express.js, MongoDB, and MySQL.
@@ -61,28 +61,30 @@ const companies = [
             </>
         ),
     },
+
     {
-        name: "QuantumCrafters Studio Private Limited",
-        logo: qcssImg,
-        link: "https://www.qcsstudio.com/",
-        period: "May 2023– Feb 2024",
+        name: "Baseline IT Development Private Limited",
+        logo: BaselineImg,
+        link: "https://baselineitdevelopment.com",
+        period: "May 2023 – Feb 2024",
         description: (
             <>
-                Worked at{" "}
+                Contributed to the development of{" "}
                 <a
-                    href="https://elevatrx.app/"
+                    href="https://hosttravel.org/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-indigo-400 hover:underline"
                 >
-                    ElevatrX
+                    HostTravel
                 </a>{" "}
-                where I built scalable full-stack applications using React.js, Node.js,
-                Express.js, MongoDB, and Redis. Integrated FCM for real-time notifications
-                and deployed optimized solutions on AWS S3 and Cloud CDN for high performance.
+                using Next.js, Node.js, Express.js, and MongoDB. Implemented server-side
+                rendering with optimized caching strategies (unstable cache) to enhance
+                performance and scalability. Also developed real-time chat functionality
+                to improve user interaction and engagement.
             </>
         ),
-    },
+    }
 ];
 export default function LastCompnise() {
     return (
@@ -132,7 +134,7 @@ export default function LastCompnise() {
                         )
                     })
                 }
-               
+
 
             </div>
         </section>
