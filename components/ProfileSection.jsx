@@ -1,13 +1,17 @@
 // components/ProfileSection.jsx
 "use client";
 
+import { VisitorContext } from "@/context/visitor.contex";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useContext } from "react";
 
 const ProfileSection = () => {
+  const { data } = useContext(VisitorContext);
+
   const personalDetails = [
     { label: "Name", value: "Pankaj Kumar Kushwaha" },
-    {label:"Mobile No",value:"8115809072"},
+    { label: "Mobile No", value: "8115809072" },
     { label: "Current Location", value: "Mohali, Punjab" },
     { label: "Designation", value: "MERN Stack Developer" },
     { label: "Experience", value: "2.5 Years" },
@@ -29,25 +33,26 @@ const ProfileSection = () => {
   ];
 
   return (
-
-<section  
-  style={{
-    maxWidth: "70rem", 
-    margin: "auto",
-    // Adding a custom box-shadow with a gradient feel
-    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1), 0 0 15px 2px rgba(99, 102, 241, 0.3)" 
-  }} 
-  className="
-    flex flex-col md:flex-row items-start md:items-center justify-between 
-    p-8 rounded-lg gap-8
-    shadow-lg transition-all duration-300 ease-out
-    
-    hover:scale-[0.98] 
-    hover:shadow-inner 
-    hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-1deg)]
-    active:scale-95
-  "
->     
+<>
+    <section
+      style={{
+        maxWidth: "70rem",
+        margin: "auto",
+        // Adding a custom box-shadow with a gradient feel
+        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1), 0 0 15px 2px rgba(99, 102, 241, 0.3)"
+      }}
+      className="
+            flex flex-col md:flex-row items-start md:items-center justify-between 
+            p-8 rounded-lg gap-8
+            shadow-lg transition-all duration-300 ease-out
+            
+            hover:scale-[0.98] 
+            hover:shadow-inner 
+            hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-1deg)]
+            active:scale-95
+          "
+    >
+      
       {/* Left Side: Personal Details */}
       <motion.div
         initial={{ x: -50, opacity: 0 }}
@@ -96,6 +101,20 @@ const ProfileSection = () => {
         ></iframe>
       </motion.div>
     </section>
+    <div className="z-[999] w-[60px] fixed bottom-6 right-6 bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-2xl px-6 py-4 text-white">
+
+        <div className="flex flex-col items-center">
+          <p className="text-[10px] text-center uppercase tracking-widest text-gray-300">
+            Total Visitors
+          </p>
+
+          <h2 className="text-[15px] font-bold mt-1 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+            {data?.totalVisits ?? 0}
+          </h2>
+        </div>
+
+      </div>
+      </>
   );
 };
 

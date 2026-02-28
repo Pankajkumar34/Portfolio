@@ -84,8 +84,9 @@ export default function RootLayout({
 
           {children}
           <Footer />
+          <VisitorCounter />
         </VisitorProviderComp>
-        <VisitorCounter />
+        
 
       </body>
     </html>

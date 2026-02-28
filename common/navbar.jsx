@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function Navbar() {
     const [activeHash, setActiveHash] = useState("");
-
+ 
   useEffect(() => {
     const handleHashChange = () => {
       setActiveHash(window.location.hash);
@@ -85,9 +85,9 @@ export default function Navbar() {
       })}
     </div>
 
-
-      {/* Desktop CV Button */}
+     {/* Desktop CV Button */}
       <div className="hidden lg:block space-x-3">
+       
         <Link
           href="/Pankaj.pdf"
           className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 transition text-white active:scale-95 rounded-lg px-7 h-11"
