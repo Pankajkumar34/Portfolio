@@ -8,6 +8,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 // Swiper CSS
 import "swiper/css";
 import "swiper/css/autoplay";
+import Image from "next/image";
 const techLogos = [
     { name: "React", src: "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png" },
     { name: "Node.js", src: "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/node_js.png" },
@@ -21,7 +22,7 @@ const techLogos = [
 
 const TechSlider = () => {
     return (
-        <div className="w-full py-10 bg-[#0c0a3b] my-3">
+        <div className="w-full py-10 bg-[#0c0a3b] mt-9">
             <Swiper
                 modules={[Autoplay]}
                 spaceBetween={30}
@@ -44,9 +45,12 @@ const TechSlider = () => {
                 {techLogos.map((tech) => (
                     <SwiperSlide key={tech.name}>
                         <div className="flex justify-center items-center p-4">
-                            <img
+                            <Image
+                            width={400}
+                            height={400}
                                 src={tech.src}
                                 alt={tech.name}
+                                priority={true}
                                 className="h-16 w-16 object-contain"
                             />
                         </div>

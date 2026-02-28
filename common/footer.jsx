@@ -2,7 +2,7 @@ import { FaLinkedin, FaGithub, FaInstagram, FaFacebook } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0f0f1a] text-white py-10 mt-32 border-t border-indigo-900">
+    <footer className="bg-[#0f0f1a] text-white py-10 mt-10 border-t border-indigo-900">
       <div className="max-w-6xl mx-auto px-6 flex flex-col items-center text-center">
 
         {/* Name & Title */}

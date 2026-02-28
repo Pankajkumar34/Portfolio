@@ -110,8 +110,22 @@ export default function LastCompnise() {
                 {
                     companies.map((item, index) => {
                         return (
-                            <div key={index} className="py-10 border-b border-slate-700 md:py-0 md:border-r md:border-b-0 md:px-10">
-                                <div className="w-[100px] h-[100px] p-2 bg-indigo-600/20 border border-indigo-600/30 rounded">
+                            <div key={index} className="
+                                    py-10 border-b border-slate-700 md:py-0 md:border-r md:border-b-0 md:px-10
+                                    
+                                    transition-all duration-500 cubic-bezier(0.2, 0.8, 0.2, 1)
+                                    will-change-transform
+                                    
+                                    shadow-[0_0_20px_rgba(0,0,0,0)] hover:shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)]
+                                    
+                                    hover:scale-[0.98] 
+                                    hover:translate-y-[2px]
+                                    hover:[transform:perspective(1000px)_rotateX(4deg)_rotateY(-2deg)]
+                                    
+                                    active:scale-95 
+                                    active:duration-100
+                                ">
+                                <div className=" w-[100px] h-[100px] p-2 bg-indigo-600/20 border border-indigo-600/30 rounded">
                                     <Image
                                         alt=""
                                         width={100}

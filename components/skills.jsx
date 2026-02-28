@@ -1,6 +1,12 @@
 export default function OurTechSkills() {
   return (
-    <section className="flex flex-col items-center">
+    <section className="shadow-lg transition-all duration-300 ease-out
+    
+    hover:scale-[0.98] 
+    hover:shadow-inner 
+    hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-1deg)]
+    active:scale-95  relative overflow-hidden
+   flex flex-col items-center">
       
       {/* Heading */}
       <div className="flex flex-col items-center mt-32">

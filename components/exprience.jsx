@@ -139,7 +139,15 @@ export default function ExperienceSlider() {
         My <span className="text-indigo-600">Experience</span>
       </h2>
 
-      <div className="relative overflow-hidden">
+      <div className="
+   
+                  shadow-lg transition-all duration-300 ease-out
+                  
+                  hover:scale-[0.98] 
+                  hover:shadow-inner 
+                  hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-1deg)]
+                  active:scale-95  relative overflow-hidden
+                " >
 
         <AnimatePresence mode="wait">
           <motion.div

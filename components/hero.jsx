@@ -7,7 +7,22 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section className="relative flex flex-col items-center justify-center text-white pt-32 pb-20 px-6 bg-gradient-to-b from-indigo-900 via-[#0f0f1a] to-black">
-
+<div className="mb-8 flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)] hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all duration-500 group">
+    {/* Blinking Dot */}
+    <span className="relative flex h-2 w-2">
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+    </span>
+    
+    <span className="text-xs md:text-sm font-medium tracking-wide text-emerald-400 uppercase">
+      Open to Work
+    </span>
+    
+    {/* Subtle Right Arrow that appears on hover */}
+    <span className="overflow-hidden w-0 group-hover:w-3 transition-all duration-300 ease-out text-emerald-400">
+      →
+    </span>
+  </div>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -31,11 +46,33 @@ export default function Hero() {
       </motion.div>
 
       {/* Heading */}
+
+      <motion.div className="flex  items-start space-y-2 mt-10">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-[12px] md:text-[15px] font-semibold text-amber-400 drop-shadow-lg"
+        >
+          Hi,
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="text-[12px] md:text-[15px] font-bold text-white drop-shadow-xl"
+        >
+          I am Pankaj Kushwaha
+        </motion.p>
+
+
+      </motion.div >
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.8 }}
-        className="text-center text-4xl md:text-6xl font-semibold mt-6 max-w-3xl leading-tight"
+        className="text-center text-4xl md:text-6xl font-semibold  max-w-3xl leading-tight"
       >
         MERN Stack Developer
       </motion.h1>
@@ -47,8 +84,7 @@ export default function Hero() {
         transition={{ delay: 0.4, duration: 0.8 }}
         className="text-center text-gray-300 mt-4 max-w-xl text-sm md:text-base"
       >
-        Full Stack Developer with 2.5+ years of experience building scalable web
-        applications using the MERN stack.
+        I am a passionate MERN Stack Developer with 2.5+ years of experience building scalable web applications using the MERN stack.
       </motion.p>
 
       {/* Buttons */}
