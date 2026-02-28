@@ -16,56 +16,77 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
-  title: "Pankaj Kushwaha | MERN Stack Developer",
+  metadataBase: new URL("https://pankajkushwahadev.vercel.app"),
+
+  title: {
+    default: "Pankaj Kushwaha | MERN Stack Developer",
+    template: "%s | Pankaj Kushwaha",
+  },
+
   description:
-    "Pankaj Kushwaha portfolio - Full Stack MERN Developer with 2.5+ years of experience building scalable web applications.",
+    "Pankaj Kushwaha is a Full Stack MERN Developer with 2.5+ years of experience building scalable, high-performance web applications using React, Next.js, Node.js and MongoDB.",
+
   keywords: [
     "Pankaj Kushwaha",
-    "MERN Stack Developer",
-    "React.js",
-    "Node.js",
-    "MongoDB",
-    "Next.js",
-    "Full Stack Developer",
-    "Portfolio",
-    "Web Developer",
-    "Frontend Developer",
+    "Pankaj Kushwaha MERN Developer",
+    "MERN Stack Developer in India",
+    "React.js Developer",
+    "Next.js Developer",
+    "Node.js Developer",
+    "MongoDB Developer",
+    "Full Stack Developer Portfolio",
   ],
-  authors: [{ name: "Pankaj Kushwaha", url: "https://pankajkushwahadev.vercel.app/" }],
+
+  authors: [
+    {
+      name: "Pankaj Kushwaha",
+      url: "https://pankajkushwahadev.vercel.app",
+    },
+  ],
+
   creator: "Pankaj Kushwaha",
+  publisher: "Pankaj Kushwaha",
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
   themeColor: "#4f46e5",
+
   openGraph: {
     title: "Pankaj Kushwaha | MERN Stack Developer",
     description:
-      "Portfolio of Pankaj Kushwaha, Full Stack MERN Developer, building scalable web applications.",
-    url: "https://pankajkushwahadev.vercel.app/",
+      "Official portfolio of Pankaj Kushwaha - Full Stack MERN Developer building scalable web applications.",
+    url: "https://pankajkushwahadev.vercel.app",
     siteName: "Pankaj Kushwaha Portfolio",
     images: [
       {
         url: "https://avatars.githubusercontent.com/u/136339307?v=4",
         width: 1200,
         height: 630,
-        alt: "Pankaj Kushwaha Portfolio",
+        alt: "Pankaj Kushwaha - MERN Stack Developer Portfolio",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pankaj Kushwaha | MERN Stack Developer",
-    description:
-      "Portfolio of Pankaj Kushwaha, Full Stack MERN Developer, building scalable web applications.",
-    site: "", // optional
-    creator: "@yourtwitterhandle",
-    images: ["https://avatars.githubusercontent.com/u/136339307?v=4"],
+
+  
+  alternates: {
+    canonical: "https://pankajkushwahadev.vercel.app",
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-32x32.png",
-    apple: "/apple-touch-icon.png",
-  },
+
+  category: "technology",
 };
 
 export default function RootLayout({
