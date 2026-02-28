@@ -128,7 +128,11 @@ interface MenuItem {
   sectionType: string;
   order: number;
 }
-
+type SectionKey = "hero" | "profile" | "experience" | "skills" | "companies";
+interface ApiSection {
+  sectionName: SectionKey;
+  content: any;
+}
 export default function Dashboard() {
   const { user, loading, logout } = useAuth();
   const router = useRouter();
@@ -181,7 +185,7 @@ export default function Dashboard() {
         const data = await res.json();
         if (Array.isArray(data)) {
           const merged = { ...defaultSections };
-          data.forEach((section: any) => {
+          data.forEach((section: ApiSection) => {
             if (section.sectionName && section.content) {
               merged[section.sectionName] = section.content;
             }
