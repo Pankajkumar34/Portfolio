@@ -177,22 +177,24 @@ export default function Dashboard() {
       setMenuLoading(false);
     }
   };
-
   const loadSections = async () => {
     try {
       const res = await fetch('/api/section');
       if (res.ok) {
         const data = await res.json();
+              console.log(data,"data")
+
         if (Array.isArray(data)) {
           const merged = { ...defaultSections };
           data.forEach((section: ApiSection) => {
-            if (section.sectionName && section.content) {
-              merged[section.sectionName] = section.content;
+            if (section?.sectionName && section?.content) {
+              merged[section?.sectionName] = section?.content;
             }
           });
           setSections(merged);
         }
       }
+
     } catch (error) {
       console.error('Error loading sections:', error);
     }
