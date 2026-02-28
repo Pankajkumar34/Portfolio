@@ -1,4 +1,36 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
+const defaultSkills = {
+  title: 'Full Stack Developer',
+  description: 'I specialize in building modern web applications using the latest frontend and backend technologies with scalable cloud deployment.',
+  frontend: 'React.js, Next.js, Redux Toolkit, TypeScript, Tailwind CSS, MUI, HTML, CSS',
+  backend: 'Node.js, Express.js, Socket.IO, RESTful APIs, Redis, MongoDB, MySQL',
+  devops: 'AWS (S3, CloudFront, EC2), Git/GitHub, Firebase, Postman',
+};
+
 export default function OurTechSkills() {
+  const [skillsData, setSkillsData] = useState(defaultSkills);
+
+  useEffect(() => {
+    fetchSkillsData();
+  }, []);
+
+  const fetchSkillsData = async () => {
+    try {
+      const res = await fetch('/api/section?sectionName=skills');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.content) {
+          setSkillsData({ ...defaultSkills, ...data.content });
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching skills data:', error);
+    }
+  };
+
   return (
     <section className="shadow-lg transition-all duration-300 ease-out
     
@@ -36,12 +68,11 @@ export default function OurTechSkills() {
         <div className="flex flex-col items-center md:items-start max-md:text-center">
           
           <h1 className="text-3xl font-medium max-w-xl mt-5 bg-gradient-to-r from-white to-[#b6abff] text-transparent bg-clip-text">
-            Full Stack Developer
+            {skillsData.title}
           </h1>
 
           <p className="text-base text-slate-400 max-w-lg mt-4">
-            I specialize in building modern web applications using the latest
-            frontend and backend technologies with scalable cloud deployment.
+            {skillsData.description}
           </p>
         </div>
 
@@ -51,16 +82,14 @@ export default function OurTechSkills() {
           <div>
             <h3 className="text-indigo-400 font-semibold mb-2">Frontend</h3>
             <p className="text-slate-300">
-              React.js, Next.js, Redux Toolkit, TypeScript, Tailwind CSS, MUI,
-              HTML, CSS
+              {skillsData.frontend}
             </p>
           </div>
 
           <div>
             <h3 className="text-indigo-400 font-semibold mb-2">Backend</h3>
             <p className="text-slate-300">
-              Node.js, Express.js, Socket.IO, RESTful APIs, Redis, MongoDB,
-              MySQL
+              {skillsData.backend}
             </p>
           </div>
 
@@ -69,7 +98,7 @@ export default function OurTechSkills() {
               DevOps / Tools
             </h3>
             <p className="text-slate-300">
-              AWS (S3, CloudFront, EC2), Git/GitHub, Firebase, Postman
+              {skillsData.devops}
             </p>
           </div>
 

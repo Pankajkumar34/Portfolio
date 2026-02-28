@@ -1,9 +1,13 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import BaselineImg from "../assets/Baseline-Logo-White-text-SVG.png"
 import qcssImg from "../assets/qcsstudio_logo.jpg"
 import calsysImg from "../assets/calsys.png"
 import Image from "next/image";
 import Link from "next/link";
-const companies = [
+
+const defaultCompanies = [
     {
         name: "QuantumCrafters Studio Private Limited",
         logo: qcssImg,
@@ -86,7 +90,28 @@ const companies = [
         ),
     }
 ];
+
 export default function LastCompnise() {
+    const [companies, setCompanies] = useState(defaultCompanies);
+
+    useEffect(() => {
+        fetchCompaniesData();
+    }, []);
+
+    const fetchCompaniesData = async () => {
+        try {
+            const res = await fetch('/api/section?sectionName=companies');
+            if (res.ok) {
+                const data = await res.json();
+                if (data.content && Array.isArray(data.content) && data.content.length > 0) {
+                    setCompanies(data.content);
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching companies data:', error);
+        }
+    };
+
     return (
         <section className="flex flex-col items-center" id="about">
 
@@ -126,13 +151,24 @@ export default function LastCompnise() {
                                     active:duration-100
                                 ">
                                 <div className=" w-[100px] h-[100px] p-2 bg-indigo-600/20 border border-indigo-600/30 rounded">
-                                    <Image
-                                        alt=""
-                                        width={100}
-                                        height={100}
-                                        priority={true}
-                                        src={item.logo}
-                                    />
+                                    {item.logo && typeof item.logo === 'string' && item.logo.startsWith('http') ? (
+                                        <img
+                                            alt=""
+                                            width={100}
+                                            height={100}
+                                            priority={true}
+                                            src={item.logo}
+                                            className="w-full h-full object-contain"
+                                        />
+                                    ) : (
+                                        <Image
+                                            alt=""
+                                            width={100}
+                                            height={100}
+                                            priority={true}
+                                            src={item.logo}
+                                        />
+                                    )}
                                 </div>
 
                                 <div className="mt-5 space-y-2">

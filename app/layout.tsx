@@ -6,6 +6,7 @@ import Footer from "../common/footer"
 import VisitorCounter from "../components/VisitorCounter"
 import TorchEffect from "../components/highlighter"
 import {VisitorProviderComp} from "../provider/visitorProvider"
+import {AuthProvider} from "../context/authContext"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -101,14 +102,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <VisitorProviderComp>
-          <TorchEffect />
-          <Navbar />
+        <AuthProvider>
+          <VisitorProviderComp>
+            <TorchEffect />
+            <Navbar />
 
-          {children}
-          <Footer />
-          <VisitorCounter />
-        </VisitorProviderComp>
+            {children}
+            <Footer />
+            <VisitorCounter />
+          </VisitorProviderComp>
+        </AuthProvider>
         
 
       </body>

@@ -4,21 +4,18 @@
 import { VisitorContext } from "@/context/visitor.contex";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
-const ProfileSection = () => {
-  const { data } = useContext(VisitorContext);
-
-  const personalDetails = [
+const defaultProfile = {
+  personalDetails: [
     { label: "Name", value: "Pankaj Kumar Kushwaha" },
     { label: "Mobile No", value: "8115809072" },
     { label: "Current Location", value: "Mohali, Punjab" },
     { label: "Designation", value: "MERN Stack Developer" },
     { label: "Experience", value: "2.5 Years" },
     { label: "Completed Projects", value: "6+" },
-  ];
-
-  const education = [
+  ],
+  education: [
     {
       degree: "Diploma in Computer Science",
       institute: "Delhi Institute of Management & Engineering Studies",
@@ -30,15 +27,38 @@ const ProfileSection = () => {
       year: "2017 – 2019",
       languages: "Hindi, English (Proficient)",
     },
-  ];
+  ],
+  mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.2345678912345!2d76.64278451501716!3d30.704649181779038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fedf6a7c12345%3A0xabcdef123456789!2sMohali%2C+Punjab%2C+India!5e0!3m2!1sen!2sin!4v1709022331234!5m2!1sen!2sin'
+};
+
+const ProfileSection = () => {
+  const { data } = useContext(VisitorContext);
+  const [profileData, setProfileData] = useState(defaultProfile);
+
+  useEffect(() => {
+    fetchProfileData();
+  }, []);
+
+  const fetchProfileData = async () => {
+    try {
+      const res = await fetch('/api/section?sectionName=profile');
+      if (res.ok) {
+        const result = await res.json();
+        if (result.content) {
+          setProfileData({ ...defaultProfile, ...result.content });
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching profile data:', error);
+    }
+  };
 
   return (
-<>
+    <>
     <section
       style={{
         maxWidth: "70rem",
         margin: "auto",
-        // Adding a custom box-shadow with a gradient feel
         boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1), 0 0 15px 2px rgba(99, 102, 241, 0.3)"
       }}
       className="
@@ -62,8 +82,8 @@ const ProfileSection = () => {
       >
         <h2 className="text-3xl font-bold mb-4">Personal Details</h2>
         <ul className="space-y-2 mb-6">
-          {personalDetails.map((item) => (
-            <li key={item.label} className="flex">
+          {profileData.personalDetails.map((item, index) => (
+            <li key={index} className="flex">
               <span className="font-semibold w-40">{item.label}:</span>
               <span>{item.value}</span>
             </li>
@@ -72,7 +92,7 @@ const ProfileSection = () => {
 
         <h2 className="text-3xl font-bold mb-4">Education</h2>
         <ul className="space-y-4">
-          {education.map((edu, index) => (
+          {profileData.education.map((edu, index) => (
             <li key={index} className="border-l-2 border-indigo-600 pl-4">
               <p className="font-semibold">{edu.degree}</p>
               <p className="text-gray-700">{edu.institute}</p>
@@ -94,7 +114,7 @@ const ProfileSection = () => {
       >
         <iframe
           className="w-full h-full rounded-lg shadow-lg"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.2345678912345!2d76.64278451501716!3d30.704649181779038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fedf6a7c12345%3A0xabcdef123456789!2sMohali%2C+Punjab%2C+India!5e0!3m2!1sen!2sin!4v1709022331234!5m2!1sen!2sin"
+          src={profileData.mapEmbed}
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

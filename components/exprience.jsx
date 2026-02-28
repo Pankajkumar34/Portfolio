@@ -1,85 +1,9 @@
-// export default function Creations() {
-//   const items = [
-//     {
-//       title: "Prompt engineers",
-//       description:
-//         "Bridging the gap between human intent and machine understanding through expert prompt design.",
-//       image:
-//         "https://images.unsplash.com/photo-1543269865-0a740d43b90c?q=80&w=800&h=400&auto=format&fit=crop",
-//       position: "object-center",
-//     },
-//     {
-//       title: "Data scientists",
-//       description:
-//         "Turning data into actionable insights that drive intelligent innovation and growth.",
-//       image:
-//         "https://images.unsplash.com/photo-1714976326351-0ecf0244f0fc?q=80&w=800&h=400&auto=format&fit=crop",
-//       position: "object-right",
-//     },
-//     {
-//       title: "Software engineers",
-//       description:
-//         "Building scalable and efficient systems that bring ideas to life through code.",
-//       image:
-//         "https://images.unsplash.com/photo-1736220690062-79e12ca75262?q=80&w=800&h=400&auto=format&fit=crop",
-//       position: "object-center",
-//     },
-//   ];
-
-//   return (
-//     <section className="flex flex-col items-center" id="creations">
-//       {/* Heading */}
-//       <div className="flex flex-col items-center mt-32">
-//         <h2 className="text-center text-4xl font-semibold max-w-2xl">
-//           Our latest{" "}
-//           <span className="bg-gradient-to-t from-indigo-600 to-black p-1 inline-block">
-//             creation
-//           </span>
-//         </h2>
-
-//         <p className="text-center text-slate-400 max-w-lg mt-3">
-//           A visual collection of our most recent works - each piece crafted
-//           with intention, emotion, and style.
-//         </p>
-//       </div>
-
-//       {/* Accordion Cards */}
-//       <div className="flex items-center gap-4 w-full max-w-5xl mt-16 mx-auto h-[400px]">
-//         {items.map((item, index) => (
-//           <div
-//             key={index}
-//             className="relative group flex-1 hover:flex-[3] transition-all duration-500 rounded-xl overflow-hidden cursor-pointer"
-//           >
-//             <img
-//               src={item.image}
-//               alt={item.title}
-//               className={`h-full w-full object-cover ${item.position}`}
-//             />
-
-//             {/* Overlay */}
-//             <div className="absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/60" />
-
-//             {/* Content */}
-//             <div className="absolute bottom-0 p-8 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
-//               <h3 className="text-2xl font-semibold">{item.title}</h3>
-//               <p className="text-sm mt-2 max-w-sm">
-//                 {item.description}
-//               </p>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
-
-
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const experiences = [
+const defaultExperiences = [
   {
     role: "Full Stack Developer",
     company: "QuantumCrafters Studio Pvt. Ltd.",
@@ -121,7 +45,26 @@ const experiences = [
 ];
 
 export default function ExperienceSlider() {
+  const [experiences, setExperiences] = useState(defaultExperiences);
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    fetchExperienceData();
+  }, []);
+
+  const fetchExperienceData = async () => {
+    try {
+      const res = await fetch('/api/section?sectionName=experience');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.content && Array.isArray(data.content) && data.content.length > 0) {
+          setExperiences(data.content);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching experience data:', error);
+    }
+  };
 
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % experiences.length);
@@ -140,7 +83,6 @@ export default function ExperienceSlider() {
       </h2>
 
       <div className="
-   
                   shadow-lg transition-all duration-300 ease-out
                   
                   hover:scale-[0.98] 
