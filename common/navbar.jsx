@@ -180,6 +180,26 @@ export default function Navbar() {
         <Link href="/#exprience" className="hover:text-slate-300 transition" onClick={() => setMobileMenuOpen(false)}>Experience</Link>
         <Link href="/#skills" className="hover:text-slate-300 transition" onClick={() => setMobileMenuOpen(false)}>Skills</Link>
         <Link href="/my-project" className="hover:text-slate-300 transition" onClick={() => setMobileMenuOpen(false)}>My Project</Link>
+         <Link
+          href="/Pankaj.pdf"
+          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 transition text-white active:scale-95 rounded-lg px-7 h-11"
+        >
+          CV View
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </Link>
         {user ? (
           <>
             <Link href="/dashboard" className="text-emerald-400 hover:text-emerald-300 transition" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
