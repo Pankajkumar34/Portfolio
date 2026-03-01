@@ -200,14 +200,14 @@ export default function Navbar() {
             <path d="m12 5 7 7-7 7" />
           </svg>
         </Link>
-        {user ? (
+        {/* {user ? (
           <>
             <Link href="/dashboard" className="text-emerald-400 hover:text-emerald-300 transition" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
-            <button onClick={() => { logout(); setMobileMenuOpen(false); }} className="text-red-400 hover:text-red-300 transition text-left">Logout</button>
+            <button onClick={() => { logout(); setMobileMenuOpen(false); }} className="flex items-center gap-2 bg-[#f30606] hover:[#c41212]  text-white active:scale-95 rounded-lg px-5 h-11   transition text-left">Logout</button>
           </>
         ) : (
-          <button onClick={() => { setShowLoginModal(true); setMobileMenuOpen(false); }} className="mt-2 text-purple-400 hover:text-purple-300 transition text-left">Login</button>
-        )}
+          <button onClick={() => { setShowLoginModal(true); setMobileMenuOpen(false); }} className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 transition text-white active:scale-95 rounded-lg px-5 h-11">Login</button>
+        )} */}
       </div>
 
       {/* Login Modal */}
@@ -280,7 +280,7 @@ export default function Navbar() {
               </button>
             </form>
             
-            <p className="mt-4 text-center text-sm text-gray-400">
+            {/* <p className="mt-4 text-center text-sm text-gray-400">
               Need an account?{' '}
               <button 
                 onClick={() => {
@@ -291,7 +291,7 @@ export default function Navbar() {
               >
                 Contact Admin
               </button>
-            </p>
+            </p> */}
           </motion.div>
         </div>
       )}
