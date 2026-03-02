@@ -35,6 +35,7 @@ export default function Navbar() {
     { name: "Experience", href: "/#exprience" },
     { name: "Skills", href: "/#skills" },
     { name: "My Project", href: "/my-project" },
+    { name: "Chat with AI", href: "/chat" },
   ];
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between w-full h-18 px-6 md:px-16 lg:px-24 xl:px-32 backdrop-blur bg-black/50">
@@ -180,6 +181,7 @@ export default function Navbar() {
         <Link href="/#exprience" className="hover:text-slate-300 transition" onClick={() => setMobileMenuOpen(false)}>Experience</Link>
         <Link href="/#skills" className="hover:text-slate-300 transition" onClick={() => setMobileMenuOpen(false)}>Skills</Link>
         <Link href="/my-project" className="hover:text-slate-300 transition" onClick={() => setMobileMenuOpen(false)}>My Project</Link>
+        <Link href="/chat" className="hover:text-slate-300 transition" onClick={() => setMobileMenuOpen(false)}>Chat with AI</Link>
          <Link
           href="/Pankaj.pdf"
           className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 transition text-white active:scale-95 rounded-lg px-7 h-11"

@@ -5,6 +5,7 @@ import LastCompnise from "@/components/lastCompnise"
 import OurTechSkills from "@/components/skills"
 // import TechSlider from "@/components/techLogo"
 import ProfileSection from "@/components/ProfileSection"
+import ChatWidget from "@/components/ChatWidget"
 import dynamic from 'next/dynamic';
 
 const TechSlider = dynamic(() => import('../components/techLogo'), {
@@ -33,6 +34,7 @@ export default function Home() {
   <OurTechSkills />
 </section>
  <TechSlider/>
+ <ChatWidget/>
     </>
   );
 }

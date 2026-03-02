@@ -7,6 +7,7 @@ import calsysImg from "../assets/calsys.png"
 import Image from "next/image";
 import Link from "next/link";
 
+
 const defaultCompanies = [
     {
         name: "QuantumCrafters Studio Private Limited",
@@ -104,7 +105,17 @@ export default function LastCompnise() {
             if (res.ok) {
                 const data = await res.json();
                 if (data.content && Array.isArray(data.content) && data.content.length > 0) {
-                    setCompanies(data.content);
+                    const mergedCompanies = data?.content.map((apiCompany) => {
+                        const defaultCompany = defaultCompanies.find(
+                            (def) => def.name === apiCompany.name
+                        );
+
+                        return {
+                            ...apiCompany,
+                            logo: defaultCompany?.logo || apiCompany.logo,
+                        };
+                    });
+                    setCompanies(mergedCompanies);
                 }
             }
         } catch (error) {
@@ -152,7 +163,7 @@ export default function LastCompnise() {
                                 ">
                                 <div className=" w-[100px] h-[100px] p-2 bg-indigo-600/20 border border-indigo-600/30 rounded">
                                     {item.logo && typeof item.logo === 'string' && item.logo.startsWith('http') ? (
-                                        <img
+                                        <Image
                                             alt=""
                                             width={100}
                                             height={100}
