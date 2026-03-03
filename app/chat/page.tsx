@@ -22,7 +22,7 @@ const [messages, setMessages] = useState<Message[]>([
     role: "assistant",
     content:
       "Hi! I'm an AI assistant for Pankaj Kushwaha's portfolio. Feel free to ask me anything about his skills, experience, projects, or background. How can I help you today?",
-    timestamp: formattedTime,
+    timestamp: new Date().toISOString(),
   },
 ]);
   const [inputMessage, setInputMessage] = useState("");
@@ -45,7 +45,7 @@ const [messages, setMessages] = useState<Message[]>([
       id: `${Date.now()}-${Math.random()}`,
       role: "user" as const,
       content: inputMessage,
-      timestamp: formattedTime
+      timestamp: new Date().toISOString()
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -72,7 +72,7 @@ const [messages, setMessages] = useState<Message[]>([
         id: `${Date.now()}-${Math.random()}`,
         role: "assistant" as const,
         content: data.message || data.error || "Sorry, I couldn't get a response.",
-        timestamp: formattedTime
+        timestamp: new Date().toISOString()
       };
 
       setMessages(prev => [...prev, assistantMessage]);
@@ -81,7 +81,7 @@ const [messages, setMessages] = useState<Message[]>([
         id: `${Date.now()}-${Math.random()}`,
         role: "assistant" as const,
         content: "Sorry, something went wrong. Please try again.",
-        timestamp: formattedTime
+        timestamp: new Date().toISOString()
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -95,7 +95,7 @@ const [messages, setMessages] = useState<Message[]>([
         id: `${Date.now()}-${Math.random()}`,
         role: "assistant",
         content: "Hi! I'm an AI assistant for Pankaj Kushwaha's portfolio. Feel free to ask me anything about his skills, experience, projects, or background. How can I help you today?",
-        timestamp: formattedTime
+        timestamp: new Date().toISOString()
       }
     ]);
   };
@@ -137,7 +137,7 @@ const [messages, setMessages] = useState<Message[]>([
                 animate={{ opacity: 1, y: 0 }}
                 className={`flex ${message?.role === "user" ? "justify-end" : "justify-start"}`}
               >
-                <div className={`flex gap-3 max-w-[80%] ${message.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
+                <div className={`flex gap-3 sm:max-w-[100%]  xl:max-w-[80%] ${message.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                     message.role === "user" ? "bg-indigo-600" : "bg-gradient-to-r from-indigo-600 to-purple-600"
                   }`}>
@@ -155,7 +155,7 @@ const [messages, setMessages] = useState<Message[]>([
                     }`}
                   >
                     <p className="whitespace-pre-wrap">{message?.content}</p>
-                    <p className={`text-xs mt-2 ${message?.role === "user" ? "text-white/60" : "text-gray-400"}`}>
+                    <p suppressHydrationWarning className={`text-xs mt-2 ${message?.role === "user" ? "text-white/60" : "text-gray-400"}`}>
                       {message?.timestamp}
                     </p>
                   </div>

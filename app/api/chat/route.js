@@ -112,7 +112,6 @@ Be friendly, professional, and concise in your responses.`
 
     const aiResponse = response.output_text || response.output[0]?.content?.[0]?.text || "No response";
 
-    // Save the query and response to database for future use
     if (lastUserMessage) {
       try {
         await ChatAI.create({
@@ -131,9 +130,24 @@ Be friendly, professional, and concise in your responses.`
     });
   } catch (error) {
     console.error("Chat API Error:", error);
-    return Response.json(
-      { error: error.message || "Failed to get response from AI" },
-      { status: 500 }
-    );
+    console.error("Chat API Error:", error);
+
+  // ✅ Handle 429 quota error
+  if (error?.status === 429) {
+    return Response.json({
+      message:
+        "I am currently available to assist only with queries related to Pankaj Kushwaha’s portfolio. Please ask about skills, experience, projects, or professional background.",
+      cached: false,
+      fallback: true,
+    });
+  }
+
+  // ✅ Generic fallback
+  return Response.json({
+    message:
+      "I'm currently unable to process your request. Please try again later.",
+    cached: false,
+    fallback: true,
+  });
   }
 }
