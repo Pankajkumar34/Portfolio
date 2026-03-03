@@ -6,7 +6,6 @@ const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Cache duration in hours (24 hours)
 const CACHE_DURATION = 24 * 60 * 60 * 1000;
 
 export async function POST(request) {
@@ -21,32 +20,81 @@ export async function POST(request) {
       );
     }
 
-    // Get the latest user message for caching
     const lastUserMessage = [...messages].reverse().find(m => m.role === "user");
-    
-    if (lastUserMessage) {
-      // Connect to database
-      await connectDB();
-      
-      // Search for existing response in database (case-insensitive)
-      const cachedResponse = await ChatAI.findOne({
-        query: lastUserMessage.content.toLowerCase().trim()
-      });
 
-      // Check if cached response exists and is not expired
-      if (cachedResponse) {
-        const cacheAge = Date.now() - cachedResponse.createdAt.getTime();
-        
+
+    if (lastUserMessage) {
+      await connectDB();
+
+      const userQuery = lastUserMessage.content.toLowerCase().trim();
+
+      const exactMatch = await ChatAI.findOne({ query: userQuery });
+
+      if (exactMatch) {
+        const cacheAge =
+          Date.now() - new Date(exactMatch.createdAt).getTime();
+
         if (cacheAge < CACHE_DURATION) {
-          // Return cached response
           return Response.json({
-            message: cachedResponse.response,
-            cached: true
+            message: exactMatch.response,
+            cached: true,
+            method: "exact-match",
           });
         }
       }
-    }
 
+      const textResults = await ChatAI.find(
+        { $text: { $search: userQuery } },
+        { score: { $meta: "textScore" } }
+      )
+        .sort({ score: { $meta: "textScore" } })
+        .limit(1);
+
+      if (textResults.length > 0) {
+        const bestTextMatch = textResults[0];
+
+        const cacheAge =
+          Date.now() - new Date(bestTextMatch.createdAt).getTime();
+
+        if (cacheAge < CACHE_DURATION) {
+          return Response.json({
+            message: bestTextMatch.response,
+            cached: true,
+            method: "text-search",
+          });
+        }
+      }
+
+      const allData = await ChatAI.find({});
+      const userWords = userQuery.split(/\s+/);
+
+      let bestMatch = null;
+      let highestScore = 0;
+
+      for (const item of allData) {
+        const dbWords = item.query.toLowerCase().split(/\s+/);
+
+        const matchCount = userWords.filter((word) =>
+          dbWords.includes(word)
+        ).length;
+
+        const score = matchCount / userWords.length;
+
+        if (score > highestScore) {
+          highestScore = score;
+          bestMatch = item;
+        }
+      }
+
+      if (bestMatch && highestScore >= 0.5) {
+        return Response.json({
+          message: bestMatch.response,
+          cached: true,
+          similarity: highestScore,
+          method: "word-match",
+        });
+      }
+    }
     const systemMessage = {
       role: "system",
       content: `You are an AI assistant for Pankaj Kushwaha's portfolio. 
@@ -55,6 +103,7 @@ He specializes in React, Next.js, Node.js, MongoDB, and full-stack web developme
 Provide helpful information about his skills, experience, projects, and background.
 Be friendly, professional, and concise in your responses.`
     };
+
 
     const response = await client.responses.create({
       model: "gpt-4o-mini",

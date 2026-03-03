@@ -5,9 +5,8 @@ import LastCompnise from "@/components/lastCompnise"
 import OurTechSkills from "@/components/skills"
 // import TechSlider from "@/components/techLogo"
 import ProfileSection from "@/components/ProfileSection"
-import ChatWidget from "@/components/ChatWidget"
 import dynamic from 'next/dynamic';
-
+import FloatingChat from "../components/chatAiButton"
 const TechSlider = dynamic(() => import('../components/techLogo'), {
   loading: () => (
     <div className="h-24 w-full bg-slate-800/20 animate-pulse rounded-lg flex items-center justify-center">
@@ -34,7 +33,7 @@ export default function Home() {
   <OurTechSkills />
 </section>
  <TechSlider/>
- <ChatWidget/>
+ <FloatingChat/>
     </>
   );
 }

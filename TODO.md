@@ -1,10 +1,17 @@
-# Chat with AI Implementation Plan
+# Dashboard Tabs Routing Implementation
 
-## Tasks to Complete:
-- [x] 1. Create API Route (`app/api/chat/route.js`) - Handle OpenAI chat requests
-- [x] 2. Create ChatWidget Component (`components/ChatWidget.jsx`) - Fixed position chat widget with animated tooltip
-- [x] 3. Create Chat Page (`app/chat/page.tsx`) - Dedicated full-page chat interface
-- [x] 4. Update Navbar - Add "Chat with AI" navigation item
-- [x] 5. Update Home Page - Add ChatWidget component
+## Tasks:
+- [x] 1. Modify `app/dashboard/layout.tsx` - Change sidebar to use `<Link>` for route navigation
+- [x] 2. Create `app/dashboard/hero-section/page.tsx`
+- [x] 3. Create `app/dashboard/profile-section/page.tsx`
+- [x] 4. Create `app/dashboard/experience-section/page.tsx`
+- [x] 5. Create `app/dashboard/skills-section/page.tsx`
+- [x] 6. Create `app/dashboard/companies-section/page.tsx`
 
-## Status: Completed
+## Summary:
+- Modified `layout.tsx` to use Next.js `<Link>` component for client-side routing
+- Fixed typo in experience path (exprience-section → experience-section)
+- Added `path` property to MenuItem interface
+- Created all 5 section pages with proper data loading and saving functionality
+- Each page loads section data from API and renders the appropriate dashboard component
+

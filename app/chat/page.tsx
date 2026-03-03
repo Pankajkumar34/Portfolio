@@ -27,7 +27,7 @@ const [messages, setMessages] = useState<Message[]>([
 ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -41,11 +41,11 @@ const [messages, setMessages] = useState<Message[]>([
     e.preventDefault();
     if (!inputMessage.trim() || isLoading) return;
 
-    const userMessage = {
-      id:`${Date.now()}-${Math.random()}`,
-      role: "user",
+    const userMessage: Message = {
+      id: `${Date.now()}-${Math.random()}`,
+      role: "user" as const,
       content: inputMessage,
-      timestamp:formattedTime
+      timestamp: formattedTime
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -68,20 +68,20 @@ const [messages, setMessages] = useState<Message[]>([
 
       const data = await response.json();
 
-      const assistantMessage :Message = {
+      const assistantMessage: Message = {
         id: `${Date.now()}-${Math.random()}`,
-        role: "assistant",
+        role: "assistant" as const,
         content: data.message || data.error || "Sorry, I couldn't get a response.",
         timestamp: formattedTime
       };
 
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
-      const errorMessage = {
+      const errorMessage: Message = {
         id: `${Date.now()}-${Math.random()}`,
-        role: "assistant",
+        role: "assistant" as const,
         content: "Sorry, something went wrong. Please try again.",
-        timestamp:formattedTime
+        timestamp: formattedTime
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -105,6 +105,7 @@ const [messages, setMessages] = useState<Message[]>([
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-[#0f0f1a] to-black text-white pt-20 pb-10">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
+        
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

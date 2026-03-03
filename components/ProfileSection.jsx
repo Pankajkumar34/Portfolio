@@ -121,7 +121,7 @@ const ProfileSection = () => {
         ></iframe>
       </motion.div>
     </section>
-    <div className="z-[999] w-[60px] fixed bottom-6 right-6 bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-2xl px-6 py-4 text-white">
+    {/* <div className="z-[999] w-[60px] fixed bottom-6 right-6 bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-2xl px-6 py-4 text-white">
 
         <div className="flex flex-col items-center">
           <p className="text-[10px] text-center uppercase tracking-widest text-gray-300">
@@ -133,7 +133,7 @@ const ProfileSection = () => {
           </h2>
         </div>
 
-      </div>
+      </div> */}
       </>
   );
 };
