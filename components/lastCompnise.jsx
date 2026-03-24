@@ -188,7 +188,7 @@ export default function LastCompnise() {
                                     </Link >
                                     <h3>{item.period}</h3>
                                     <p className="text-sm text-slate-400">
-                                        {item.description}
+                                       {String(item?.description || "").replace(/<[^>]*>/g, "")}
                                     </p>
                                 </div>
                             </div>
